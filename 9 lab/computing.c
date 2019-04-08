@@ -11,14 +11,14 @@ int checkstr(char *str){
 	for (int i = 0; i < strlen(str); i++){
 		if ((isspace(str[i]) == 0) && (isalpha(str[i]) == 0) && (isdigit(str[i]) == 0))
 		{
-			printf("Ошибка! В строке имеются недопустимые символы.\n");
+			printf("РћС€РёР±РєР°! Р’ СЃС‚СЂРѕРєРµ РёРјРµСЋС‚СЃСЏ РЅРµРґРѕРїСѓСЃС‚РёРјС‹Рµ СЃРёРјРІРѕР»С‹.\n");
 			return -1;
 		}
         else{
                 flag++;
         }
 	}
-	if(flag == 0){printf("Ошибка! Не было введено ни одного символа!\n"); return -1;}
+	if(flag == 0){printf("РћС€РёР±РєР°! РќРµ Р±С‹Р»Рѕ РІРІРµРґРµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ СЃРёРјРІРѕР»Р°!\n"); return -1;}
 	return 0;
 }
 
@@ -30,12 +30,12 @@ int input(int kolvo){
         FILE *file = fopen("DB","w+");
         kolvo = 0;
         if (file == NULL) {
-            printf("Ошибка создания файла!");
+            printf("РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ С„Р°Р№Р»Р°!");
         }
     }
     else {
         do{
-            printf("\nБаза даннных уже существует, Вы точно хотите ее удалить и создать новую?\n1)Да\n2)Нет, вернуться в главное меню.\n");
+            printf("\nР‘Р°Р·Р° РґР°РЅРЅРЅС‹С… СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, Р’С‹ С‚РѕС‡РЅРѕ С…РѕС‚РёС‚Рµ РµРµ СѓРґР°Р»РёС‚СЊ Рё СЃРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ?\n1)Р”Р°\n2)РќРµС‚, РІРµСЂРЅСѓС‚СЊСЃСЏ РІ РіР»Р°РІРЅРѕРµ РјРµРЅСЋ.\n");
             fgets(deminChecker, 45,stdin);
             choice = atoi(deminChecker);
         }while(choice!=1 && choice!=2);
@@ -52,7 +52,7 @@ int input(int kolvo){
             break;
         }
                 do{
-                    printf("\nСколько игроков необходимо занести? (минимум 1):  ");
+                    printf("\nРЎРєРѕР»СЊРєРѕ РёРіСЂРѕРєРѕРІ РЅРµРѕР±С…РѕРґРёРјРѕ Р·Р°РЅРµСЃС‚Рё? (РјРёРЅРёРјСѓРј 1):  ");
                     fgets(deminChecker, 45, stdin);
                     kolvo = atoi(deminChecker);
                 }while(kolvo<1);
@@ -60,7 +60,7 @@ int input(int kolvo){
                 fseek(DB, 0, SEEK_SET);
                 for (int i = 0; i< kolvo; i++){
                     do{
-                        printf("\nВведите ФИО футболиста: ");
+                        printf("\nР’РІРµРґРёС‚Рµ Р¤РРћ С„СѓС‚Р±РѕР»РёСЃС‚Р°: ");
                         fgets(deminChecker, 25,stdin);
                         choice = checkstr(deminChecker);
                     }while(choice == -1);
@@ -71,7 +71,7 @@ int input(int kolvo){
                     deminChecker[j-1] = '\0';
                     strcpy((list.fio),deminChecker);
                     do{
-                        printf("Введите название клуба: ");
+                        printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєР»СѓР±Р°: ");
                         fgets(deminChecker, 15,stdin);
                         choice = checkstr(deminChecker);
                     }while(choice == -1);
@@ -82,7 +82,7 @@ int input(int kolvo){
                     deminChecker[j-1] = '\0';
                     strcpy((list.clubName),deminChecker);
                     do{
-                        printf("Введите \"амплуа\" футболиста: ");
+                        printf("Р’РІРµРґРёС‚Рµ \"Р°РјРїР»СѓР°\" С„СѓС‚Р±РѕР»РёСЃС‚Р°: ");
                         fgets(deminChecker, 15,stdin);
                         choice = checkstr(deminChecker);
                     }while(choice == -1);
@@ -93,23 +93,23 @@ int input(int kolvo){
                     deminChecker[j-1] = '\0';
                     strcpy((list.amplua),deminChecker);
                     do{
-                        printf("Введите количество сыгранных матчей: ");
+                        printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‹РіСЂР°РЅРЅС‹С… РјР°С‚С‡РµР№: ");
                         fgets(deminChecker, 15,stdin);
                         choice = atoi(deminChecker);
                         if(deminChecker[0] == '0'){choice = 0; break;}
                     }while(choice == 0);
                     list.games = choice;
                     do{
-                        printf("Введите количество забитых мячей: ");
+                        printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°Р±РёС‚С‹С… РјСЏС‡РµР№: ");
                         fgets(deminChecker, 15,stdin);
                         choice = atoi(deminChecker);
                         if(deminChecker[0] == '0'){choice = 0; break;}
                     }while(choice == 0);
                     list.goals = choice;
                 fwrite(&list, sizeof(player), 1,DB);
-                printf("\nДанные внесены!\n\n");
+                printf("\nР”Р°РЅРЅС‹Рµ РІРЅРµСЃРµРЅС‹!\n\n");
                     }
-                printf("\nБаза данных успешно заполнена!\n\n");
+                printf("\nР‘Р°Р·Р° РґР°РЅРЅС‹С… СѓСЃРїРµС€РЅРѕ Р·Р°РїРѕР»РЅРµРЅР°!\n\n");
                 rewind(DB);
                 fclose(DB);
 
@@ -121,14 +121,14 @@ int add(int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
     rewind(stdin);
     player list;
     rewind(DB);
     do{
-        printf("\nВведите ФИО футболиста: ");
+        printf("\nР’РІРµРґРёС‚Рµ Р¤РРћ С„СѓС‚Р±РѕР»РёСЃС‚Р°: ");
         fgets(deminChecker, 25,stdin);
         choice = checkstr(deminChecker);
      }while(choice == -1);
@@ -142,7 +142,7 @@ int add(int kolvo){
      deminChecker[j-1] = '\0';
                     strcpy((list.fio),deminChecker);
                     do{
-                        printf("Введите название клуба: ");
+                        printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєР»СѓР±Р°: ");
                         fgets(deminChecker, 15,stdin);
                         choice = checkstr(deminChecker);
                     }while(choice == -1);
@@ -153,7 +153,7 @@ int add(int kolvo){
                     deminChecker[j-1] = '\0';
                     strcpy((list.clubName),deminChecker);
                     do{
-                        printf("Введите \"амплуа\" футболиста: ");
+                        printf("Р’РІРµРґРёС‚Рµ \"Р°РјРїР»СѓР°\" С„СѓС‚Р±РѕР»РёСЃС‚Р°: ");
                         fgets(deminChecker, 15,stdin);
                         choice = checkstr(deminChecker);
                     }while(choice == -1);
@@ -164,14 +164,14 @@ int add(int kolvo){
                     deminChecker[j-1] = '\0';
                     strcpy((list.amplua),deminChecker);
                     do{
-                        printf("Введите количество сыгранных матчей: ");
+                        printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‹РіСЂР°РЅРЅС‹С… РјР°С‚С‡РµР№: ");
                         fgets(deminChecker, 15,stdin);
                         choice = atoi(deminChecker);
                         if(deminChecker[0] == '0'){choice = 0; break;}
                     }while(choice == 0);
                     list.games = choice;
                     do{
-                        printf("Введите количество забитых мячей: ");
+                        printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°Р±РёС‚С‹С… РјСЏС‡РµР№: ");
                         fgets(deminChecker, 15,stdin);
                         choice = atoi(deminChecker);
                         if(deminChecker[0] == '0'){choice = 0; break;}
@@ -180,7 +180,7 @@ int add(int kolvo){
 
                 fseek(DB, 0,SEEK_END);
                 fwrite(&list, sizeof(char)*160, 1,DB);
-                printf("\nДанные внесены!\n\n");
+                printf("\nР”Р°РЅРЅС‹Рµ РІРЅРµСЃРµРЅС‹!\n\n");
                 kolvo++;
                 chsize(_fileno(DB), ((kolvo) * sizeof(char)*162));
                 fclose(DB);
@@ -194,21 +194,21 @@ int delete(int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*30);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
     rewind(stdin);
-    if(kolvo == 0){printf("\nБаза пуста\n"); return kolvo;}
+    if(kolvo == 0){printf("\nР‘Р°Р·Р° РїСѓСЃС‚Р°\n"); return kolvo;}
     fseek(DB, 0, SEEK_END);
 	int b = ftell(DB) / sizeof(char);
 	printf("\n%d\n", b);
     do{
-        printf("Введите номер игрока, которого следует удалить:  ");
+        printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РёРіСЂРѕРєР°, РєРѕС‚РѕСЂРѕРіРѕ СЃР»РµРґСѓРµС‚ СѓРґР°Р»РёС‚СЊ:  ");
         fgets(deminChecker,45, stdin);
         choice = atoi(deminChecker);
     }while(choice < 1);
     if (choice>kolvo){
-        printf("\nОшибка, игрока с таким номером еще нет!\n");
+        printf("\nРћС€РёР±РєР°, РёРіСЂРѕРєР° СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РµС‰Рµ РЅРµС‚!\n");
         return kolvo;
     }
     if (choice < kolvo){
@@ -224,7 +224,7 @@ int delete(int kolvo){
         b = ftell(DB) / sizeof(char);
         printf("\n%d\n", b);
     chsize(_fileno(DB), ((kolvo - 1) * sizeof(char)*162));
-    printf("\nУдаление прошло успешно!\n");
+    printf("\nРЈРґР°Р»РµРЅРёРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ!\n");
         fseek(DB, 0, SEEK_END);
         b = ftell(DB) / sizeof(char);
         printf("\n%d\n", b);
@@ -238,21 +238,21 @@ int search(int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
-    if(kolvo == 0){printf("\nБаза пуста\n"); return kolvo;}
+    if(kolvo == 0){printf("\nР‘Р°Р·Р° РїСѓСЃС‚Р°\n"); return kolvo;}
     player list;
-    printf("Выберите поле, по которому хотите искать:\n");
-	printf("1. ФИО\n");
-	printf("2. Название клуба\n");
-	printf("3. Амплуа\n");
-	printf("4. Кол-во матчей\n");
-	printf("5. Кол-во голов\n");
-	printf("6. Не искать\n");
+    printf("Р’С‹Р±РµСЂРёС‚Рµ РїРѕР»Рµ, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ С…РѕС‚РёС‚Рµ РёСЃРєР°С‚СЊ:\n");
+	printf("1. Р¤РРћ\n");
+	printf("2. РќР°Р·РІР°РЅРёРµ РєР»СѓР±Р°\n");
+	printf("3. РђРјРїР»СѓР°\n");
+	printf("4. РљРѕР»-РІРѕ РјР°С‚С‡РµР№\n");
+	printf("5. РљРѕР»-РІРѕ РіРѕР»РѕРІ\n");
+	printf("6. РќРµ РёСЃРєР°С‚СЊ\n");
 
 	do{
-        printf("Ваш выбор: ");
+        printf("Р’Р°С€ РІС‹Р±РѕСЂ: ");
         fgets(deminChecker, 25, stdin);
         choice = atoi(deminChecker);
 	}while(choice!=1 && choice!=2 && choice!=3 && choice!=4 && choice!=5 && choice!=6 );
@@ -261,7 +261,7 @@ int search(int kolvo){
         case 1:
 
 		choice = 0;
-		printf("Введите ФИО: ");
+		printf("Р’РІРµРґРёС‚Рµ Р¤РРћ: ");
 		fgets(deminChecker, 25,stdin);
 		int i = 0;
 		while(deminChecker[i]!= '\n' ){
@@ -279,13 +279,13 @@ int search(int kolvo){
 		}
 		if (choice == 0)
 		{
-			printf("\nСовпадений нет.\n");
+			printf("\nРЎРѕРІРїР°РґРµРЅРёР№ РЅРµС‚.\n");
 			break;
 		}
-		printf("Найденные футболисты:\n");
+		printf("РќР°Р№РґРµРЅРЅС‹Рµ С„СѓС‚Р±РѕР»РёСЃС‚С‹:\n");
         printf("______________________________________________________________________________________________________\n");
         printf("|   |                            |                   |                |                |              |\n");
-        printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+        printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
         printf("|___|____________________________|___________________|________________|________________|______________|\n");
         i = 1;
         rewind(DB);
@@ -304,7 +304,7 @@ int search(int kolvo){
         break;
         case 2:
         choice = 0;
-		printf("Введите название клуба: ");
+		printf("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєР»СѓР±Р°: ");
 		fgets(deminChecker, 25,stdin);
 		i = 0;
 		while(deminChecker[i]!= '\n' ){
@@ -322,13 +322,13 @@ int search(int kolvo){
 		}
 		if (choice == 0)
 		{
-			printf("\nСовпадений нет.\n");
+			printf("\nРЎРѕРІРїР°РґРµРЅРёР№ РЅРµС‚.\n");
 			break;
 		}
-		printf("Найденные футболисты:\n");
+		printf("РќР°Р№РґРµРЅРЅС‹Рµ С„СѓС‚Р±РѕР»РёСЃС‚С‹:\n");
         printf("______________________________________________________________________________________________________\n");
         printf("|   |                            |                   |                |                |              |\n");
-        printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+        printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
         printf("|___|____________________________|___________________|________________|________________|______________|\n");
         i = 1;
         rewind(DB);
@@ -346,7 +346,7 @@ int search(int kolvo){
         break;
         case 3:
             choice = 0;
-		printf("Введите амплуа: ");
+		printf("Р’РІРµРґРёС‚Рµ Р°РјРїР»СѓР°: ");
 		fgets(deminChecker, 25,stdin);
 		 i = 0;
 		while(deminChecker[i]!= '\n' ){
@@ -364,13 +364,13 @@ int search(int kolvo){
 		}
 		if (choice == 0)
 		{
-			printf("\nСовпадений нет.\n");
+			printf("\nРЎРѕРІРїР°РґРµРЅРёР№ РЅРµС‚.\n");
 			break;
 		}
-		printf("Найденные футболисты:\n");
+		printf("РќР°Р№РґРµРЅРЅС‹Рµ С„СѓС‚Р±РѕР»РёСЃС‚С‹:\n");
         printf("______________________________________________________________________________________________________\n");
         printf("|   |                            |                   |                |                |              |\n");
-        printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+        printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
         printf("|___|____________________________|___________________|________________|________________|______________|\n");
         i = 1;
         rewind(DB);
@@ -389,7 +389,7 @@ int search(int kolvo){
         case 4:
         choice = 0;
 		do{
-            printf("Введите количество сыгранных матчей: ");
+            printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃС‹РіСЂР°РЅРЅС‹С… РјР°С‚С‡РµР№: ");
             fgets(deminChecker, 25,stdin);
             num = atoi(deminChecker);
             if(deminChecker[0] == '0'){num = 0; break;}
@@ -405,13 +405,13 @@ int search(int kolvo){
 		}
 		if (choice == 0)
 		{
-			printf("\nСовпадений нет.\n");
+			printf("\nРЎРѕРІРїР°РґРµРЅРёР№ РЅРµС‚.\n");
 			break;
 		}
-		printf("Найденные футболисты:\n");
+		printf("РќР°Р№РґРµРЅРЅС‹Рµ С„СѓС‚Р±РѕР»РёСЃС‚С‹:\n");
         printf("______________________________________________________________________________________________________\n");
         printf("|   |                            |                   |                |                |              |\n");
-        printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+        printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
         printf("|___|____________________________|___________________|________________|________________|______________|\n");
         i = 1;
         rewind(DB);
@@ -430,7 +430,7 @@ int search(int kolvo){
         case 5:
         choice = 0;
 		do{
-            printf("Введите количество забитых мячей: ");
+            printf("Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°Р±РёС‚С‹С… РјСЏС‡РµР№: ");
             fgets(deminChecker, 25,stdin);
             num = atoi(deminChecker);
             if(deminChecker[0] == '0'){num = 0; break;}
@@ -446,13 +446,13 @@ int search(int kolvo){
 		}
 		if (choice == 0)
 		{
-			printf("\nСовпадений нет.\n");
+			printf("\nРЎРѕРІРїР°РґРµРЅРёР№ РЅРµС‚.\n");
 			break;
 		}
-		printf("Найденные футболисты:\n");
+		printf("РќР°Р№РґРµРЅРЅС‹Рµ С„СѓС‚Р±РѕР»РёСЃС‚С‹:\n");
         printf("______________________________________________________________________________________________________\n");
         printf("|   |                            |                   |                |                |              |\n");
-        printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+        printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
         printf("|___|____________________________|___________________|________________|________________|______________|\n");
         i = 1;
         rewind(DB);
@@ -481,34 +481,34 @@ int edit(int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
 
-      if(kolvo == 0){printf("\nБаза пуста\n"); return kolvo;}
+      if(kolvo == 0){printf("\nР‘Р°Р·Р° РїСѓСЃС‚Р°\n"); return kolvo;}
     do{
-        printf("\nВведите номер игрока, данные которого хотите редактировать:  \n");
+        printf("\nР’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ РёРіСЂРѕРєР°, РґР°РЅРЅС‹Рµ РєРѕС‚РѕСЂРѕРіРѕ С…РѕС‚РёС‚Рµ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ:  \n");
         fgets(deminChecker, 15, stdin);
         num = atoi(deminChecker);
     }while(num<1);
     if (num>kolvo){
-        printf("\nОшибка, игрока с таким номером еще нет!\n");
+        printf("\nРћС€РёР±РєР°, РёРіСЂРѕРєР° СЃ С‚Р°РєРёРј РЅРѕРјРµСЂРѕРј РµС‰Рµ РЅРµС‚!\n");
         return kolvo;
     }
 
     for (int i = 0; i <num; i++){
         fread(&list, sizeof(player),1,DB);
     }
-    printf("Укажите поле, которое хотите отредактировать: \n");
-	printf("1. ФИО\n");
-	printf("2. Название клуба\n");
-	printf("3. Амплуа\n");
-	printf("4. Кол-во матчей\n");
-	printf("5. Кол-во голов\n");
-	printf("6. Не редактировать\n");
+    printf("РЈРєР°Р¶РёС‚Рµ РїРѕР»Рµ, РєРѕС‚РѕСЂРѕРµ С…РѕС‚РёС‚Рµ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ: \n");
+	printf("1. Р¤РРћ\n");
+	printf("2. РќР°Р·РІР°РЅРёРµ РєР»СѓР±Р°\n");
+	printf("3. РђРјРїР»СѓР°\n");
+	printf("4. РљРѕР»-РІРѕ РјР°С‚С‡РµР№\n");
+	printf("5. РљРѕР»-РІРѕ РіРѕР»РѕРІ\n");
+	printf("6. РќРµ СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ\n");
 
 	do{
-        printf("Ваш выбор: ");
+        printf("Р’Р°С€ РІС‹Р±РѕСЂ: ");
         fgets(deminChecker, 25, stdin);
         choice = atoi(deminChecker);
 	}while(choice!=1 && choice!=2 && choice!=3 && choice!=4 && choice!=5 && choice!=6 );
@@ -516,7 +516,7 @@ int edit(int kolvo){
     int j = 0;
     switch (choice){
     case 1:
-    printf("Введите новое значение поля: \n");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ: \n");
 	fgets(deminChecker, 25, stdin);
 	j = 0;
     while(deminChecker[j-1] != '\n'){
@@ -526,7 +526,7 @@ int edit(int kolvo){
 	strcpy(list.fio, deminChecker);
     break;
     case 2:
-    printf("Введите новое значение поля: \n");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ: \n");
 	fgets(deminChecker, 25, stdin);
 	j = 0;
     while(deminChecker[j-1] != '\n'){
@@ -536,7 +536,7 @@ int edit(int kolvo){
 	strcpy(list.clubName, deminChecker);
     break;
     case 3:
-    printf("Введите новое значение поля: \n");
+    printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ: \n");
 	fgets(deminChecker, 25, stdin);
 	j = 0;
     while(deminChecker[j-1] != '\n'){
@@ -547,7 +547,7 @@ int edit(int kolvo){
     break;
     case 4:
     do{
-        printf("Введите новое значение поля (число): \n");
+        printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ (С‡РёСЃР»Рѕ): \n");
         fgets(deminChecker, 25, stdin);
         if(deminChecker[0] == '0'){x = 0; break;}
         x = atoi(deminChecker);
@@ -556,7 +556,7 @@ int edit(int kolvo){
     break;
     case 5:
         do{
-        printf("Введите новое значение поля (число): \n");
+        printf("Р’РІРµРґРёС‚Рµ РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ (С‡РёСЃР»Рѕ): \n");
         fgets(deminChecker, 25, stdin);
         if(deminChecker[0] == '0'){x = 0; break;}
         x = atoi(deminChecker);
@@ -572,7 +572,7 @@ int edit(int kolvo){
     rewind(stdin);
     fseek(DB, sizeof(char)*162*(num-1), SEEK_SET);
 	fwrite(&list, sizeof(char), 160, DB);
-	printf("Запись успешно изменена.\n");
+	printf("Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РёР·РјРµРЅРµРЅР°.\n");
 	fclose(DB);
     return kolvo;
 }
@@ -582,18 +582,18 @@ int sort (int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
 
-    if(kolvo == 0){printf("\nБаза пуста\n"); return kolvo;}
-    printf("Укажите поле, по которому хотите сортировать: \n");
-	printf("1. ФИО\n");
-	printf("2. Название клуба\n");
-	printf("3. Амплуа\n");
-	printf("4. Кол-во матчей\n");
-	printf("5. Кол-во голов\n");
-	printf("6. Не сортировать\n");
+    if(kolvo == 0){printf("\nР‘Р°Р·Р° РїСѓСЃС‚Р°\n"); return kolvo;}
+    printf("РЈРєР°Р¶РёС‚Рµ РїРѕР»Рµ, РїРѕ РєРѕС‚РѕСЂРѕРјСѓ С…РѕС‚РёС‚Рµ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ: \n");
+	printf("1. Р¤РРћ\n");
+	printf("2. РќР°Р·РІР°РЅРёРµ РєР»СѓР±Р°\n");
+	printf("3. РђРјРїР»СѓР°\n");
+	printf("4. РљРѕР»-РІРѕ РјР°С‚С‡РµР№\n");
+	printf("5. РљРѕР»-РІРѕ РіРѕР»РѕРІ\n");
+	printf("6. РќРµ СЃРѕСЂС‚РёСЂРѕРІР°С‚СЊ\n");
 
     player *list = (struct player*)malloc(sizeof(player)*kolvo);
     rewind(DB);
@@ -603,7 +603,7 @@ int sort (int kolvo){
     rewind(DB);
 
 	do{
-        printf("Ваш выбор: ");
+        printf("Р’Р°С€ РІС‹Р±РѕСЂ: ");
         fgets(deminChecker, 25, stdin);
         choice = atoi(deminChecker);
 	}while(choice!=1 && choice!=2 && choice!=3 && choice!=4 && choice!=5 && choice!=6 );
@@ -651,16 +651,16 @@ int output(int kolvo){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     FILE *DB = fopen("DB", "r+t");
     if (DB == NULL) {
-        printf("\nОшибка, базы данных еще нет. Воспользуйтесь первым вариантом меню для ее создания и заполнения!\n\n");
+        printf("\nРћС€РёР±РєР°, Р±Р°Р·С‹ РґР°РЅРЅС‹С… РµС‰Рµ РЅРµС‚. Р’РѕСЃРїРѕР»СЊР·СѓР№С‚РµСЃСЊ РїРµСЂРІС‹Рј РІР°СЂРёР°РЅС‚РѕРј РјРµРЅСЋ РґР»СЏ РµРµ СЃРѕР·РґР°РЅРёСЏ Рё Р·Р°РїРѕР»РЅРµРЅРёСЏ!\n\n");
         return 0;
     }
     player list;
-      if(kolvo == 0){printf("\nБаза пуста\n"); return kolvo;}
+      if(kolvo == 0){printf("\nР‘Р°Р·Р° РїСѓСЃС‚Р°\n"); return kolvo;}
 
-    printf("База данных:\n");
+    printf("Р‘Р°Р·Р° РґР°РЅРЅС‹С…:\n");
 	printf("______________________________________________________________________________________________________\n");
 	printf("|   |                            |                   |                |                |              |\n");
-	printf("| № |            ФИО             |         Клуб      |     Амплуа     | Матчей сыграно | Голов забито |\n");
+	printf("| в„– |            Р¤РРћ             |         РљР»СѓР±      |     РђРјРїР»СѓР°     | РњР°С‚С‡РµР№ СЃС‹РіСЂР°РЅРѕ | Р“РѕР»РѕРІ Р·Р°Р±РёС‚Рѕ |\n");
 	printf("|___|____________________________|___________________|________________|________________|______________|\n");
     int i = 0;
     while (!feof(DB))
