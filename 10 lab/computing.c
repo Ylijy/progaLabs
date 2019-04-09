@@ -11,23 +11,23 @@ chlen *create(chlen *golovka, int i){
     char* deminChecker = (char*)malloc(sizeof(char)*50);
     int k, deg;
     struct chlen *tail;
-    printf("\nСейчас начнется запись %d-ого многочлена. Для завершения ввода введите коэффициент равный нулю.\n", i);
+    printf("\nРЎРµР№С‡Р°СЃ РЅР°С‡РЅРµС‚СЃСЏ Р·Р°РїРёСЃСЊ %d-РѕРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР°. Р”Р»СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РІРІРѕРґР° РІРІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ СЂР°РІРЅС‹Р№ РЅСѓР»СЋ.\n", i);
     golovka = (chlen*)malloc(sizeof(chlen));
     int flag =0;
     while (1){
         do{
-            printf("Введите коэффициент при степени: ");
+            printf("Р’РІРµРґРёС‚Рµ РєРѕСЌС„С„РёС†РёРµРЅС‚ РїСЂРё СЃС‚РµРїРµРЅРё: ");
             fgets(deminChecker, 25,stdin);
             k = atoi(deminChecker);
             if(deminChecker[0] == '0'){k = 0; break;}
         }while(k == 0);
         if (k == 0){
-                if(flag == 0){printf("\nОбнаружен пустой многочлен, попробуйте снова"); exit(0);}
-                printf("\nВвод %d-ого многочлена завершен.\n", i);
+                if(flag == 0){printf("\nРћР±РЅР°СЂСѓР¶РµРЅ РїСѓСЃС‚РѕР№ РјРЅРѕРіРѕС‡Р»РµРЅ, РїРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°"); exit(0);}
+                printf("\nР’РІРѕРґ %d-РѕРіРѕ РјРЅРѕРіРѕС‡Р»РµРЅР° Р·Р°РІРµСЂС€РµРЅ.\n", i);
                 break;
         }
         do{
-            printf("Введите значение степени: ");
+            printf("Р’РІРµРґРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ СЃС‚РµРїРµРЅРё: ");
             fgets(deminChecker, 25,stdin);
             deg = atoi(deminChecker);
             if(deminChecker[0] == '0'){deg = 0; break;}
@@ -37,7 +37,7 @@ chlen *create(chlen *golovka, int i){
             golovka->k = k;
             golovka->next = NULL;
             flag++;
-            printf("\nВвод одночлена завршен\n");
+            printf("\nР’РІРѕРґ РѕРґРЅРѕС‡Р»РµРЅР° Р·Р°РІСЂС€РµРЅ\n");
             tail = golovka;
         }
        else{
@@ -48,7 +48,7 @@ chlen *create(chlen *golovka, int i){
             newNote->k = k;
             newNote->next = NULL;
             tail = newNote;
-            printf("\nВвод одночлена завршен\n");
+            printf("\nР’РІРѕРґ РѕРґРЅРѕС‡Р»РµРЅР° Р·Р°РІСЂС€РµРЅ\n");
         }
     }
     return (golovka);
@@ -62,7 +62,7 @@ int checkstr(char *str){
 	int i = 0;
 	while (str[i]!='\n'){
         if ((isdigit(str[i]))== 0){
-            printf("Ошибка! В строке имеются недопустимые символы.\n");
+            printf("РћС€РёР±РєР°! Р’ СЃС‚СЂРѕРєРµ РёРјРµСЋС‚СЃСЏ РЅРµРґРѕРїСѓСЃС‚РёРјС‹Рµ СЃРёРјРІРѕР»С‹.\n");
 			return -1;
         }
         else {
@@ -71,7 +71,7 @@ int checkstr(char *str){
         i++;
 	}
 
-	if(flag == 0){printf("Ошибка! Не было введено ни одного символа!\n"); return -1;}
+	if(flag == 0){printf("РћС€РёР±РєР°! РќРµ Р±С‹Р»Рѕ РІРІРµРґРµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ СЃРёРјРІРѕР»Р°!\n"); return -1;}
 
 	return atoi(str);
 }
@@ -87,7 +87,7 @@ void degChecker(chlen *head, int num) {
 		p = p->next;
 	} while (p != NULL);
 	if (k >= 1) {
-		printf("\nОшибка.Вы ввели одну и ту же степень 2 раза.\n");
+		printf("\nРћС€РёР±РєР°.Р’С‹ РІРІРµР»Рё РѕРґРЅСѓ Рё С‚Сѓ Р¶Рµ СЃС‚РµРїРµРЅСЊ 2 СЂР°Р·Р°.\n");
 		exit(0);
 	}
 }
@@ -95,7 +95,7 @@ void degChecker(chlen *head, int num) {
 
 void output (chlen *head, int numOfmnogochlen){
 
-    printf("\n\nМногочлен %d:\n\n",numOfmnogochlen );
+    printf("\n\nРњРЅРѕРіРѕС‡Р»РµРЅ %d:\n\n",numOfmnogochlen );
     struct chlen *p;
     p = head;
     do {
@@ -133,6 +133,6 @@ chlen* createResult(chlen *p, chlen *q){
         }while(q != NULL);
         p = p->next;
     }while(p != NULL);
-    if (flag == 0){printf("\nОдинаковых степеней не было найдено"); exit(0);}
+    if (flag == 0){printf("\nРћРґРёРЅР°РєРѕРІС‹С… СЃС‚РµРїРµРЅРµР№ РЅРµ Р±С‹Р»Рѕ РЅР°Р№РґРµРЅРѕ"); exit(0);}
     return result;
 }
