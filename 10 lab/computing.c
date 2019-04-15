@@ -51,6 +51,7 @@ chlen *create(chlen *golovka, int i){
             printf("\nВвод одночлена завршен\n");
         }
     }
+    free(deminChecker);
     return (golovka);
 }
 
@@ -92,14 +93,20 @@ void degChecker(chlen *head, int num) {
 	}
 }
 
-
 void output (chlen *head, int numOfmnogochlen){
 
     printf("\n\nМногочлен %d:\n\n",numOfmnogochlen );
     struct chlen *p;
     p = head;
+    int flag = 0;
     do {
-		printf("+(%d)x^(%d)", p->k, p->deg);
+        if (flag == 0){
+                printf("%dx^(%d)", p->k, p->deg);
+        }
+		else{
+                printf("+(%d)x^(%d)", p->k, p->deg);
+		}
+		flag++;
 		p = p->next;
 	} while (p != NULL);
 }
@@ -136,3 +143,4 @@ chlen* createResult(chlen *p, chlen *q){
     if (flag == 0){printf("\nОдинаковых степеней не было найдено"); exit(0);}
     return result;
 }
+
